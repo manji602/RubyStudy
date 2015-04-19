@@ -4,10 +4,10 @@ one:
   owner_id: 1
   entry_id: 1
   body: MyString
-  created_at: 2015-04-19 16:38:06
+  created_at: 2015-04-19 17:21:20
 
 two:
   owner_id: 1
   entry_id: 1
   body: MyString
-  created_at: 2015-04-19 16:38:06
+  created_at: 2015-04-19 17:21:20
