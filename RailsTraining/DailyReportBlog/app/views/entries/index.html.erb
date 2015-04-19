@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Entries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Owner</th>
+      <th>Blog</th>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.owner_id %></td>
+        <td><%= entry.blog_id %></td>
+        <td><%= entry.title %></td>
+        <td><%= entry.body %></td>
+        <td><%= entry.created_at %></td>
+        <td><%= entry.updated_at %></td>
+        <td><%= link_to 'Show', entry %></td>
+        <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
+        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Entry', new_entry_path %>
