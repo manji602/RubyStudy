@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'static_pages/home'
+  get 'static_pages/about'
+
   resources :comments
   resources :entries
   resources :blogs
