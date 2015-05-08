@@ -1,27 +1,21 @@
 require 'spec_helper'
 
-RSpec.describe "StaticPages", type: :request do
-  describe "Home page" do
-    it "should have the content 'Sample App'" do
-      visit '/static_pages/home'
-      expect(page).to have_content('Sample App')
-    end
+describe "Static pages" do
 
-    it "should have the title 'Home'" do
-      visit '/static_pages/home'
-      expect(page).to have_title("DailyReportBlog | Home")
-    end
+  subject { page }
+
+  describe "Home page" do
+    before { visit home_path }
+
+    it { should have_content('Sample App') }
+    it { should have_title('DailyReportBlog | Home') }
   end
 
   describe "About page" do
-    it "should have the content 'About Us'" do
-      visit '/static_pages/about'
-      expect(page).to have_content('About Us')
-    end
+    before { visit about_path }
 
-    it "should have the title 'About Us'" do
-      visit '/static_pages/about'
-      expect(page).to have_title("DailyReportBlog | About Us")
-    end
+    it { should have_content('About Us') }
+    it { should have_title('DailyReportBlog | About Us') }
   end
+
 end

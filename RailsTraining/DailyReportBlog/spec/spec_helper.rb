@@ -7,6 +7,8 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+
+
   # require capybara
   # SEE ALSO:
   # http://app2641.hatenablog.com/entry/2014/12/15/172954
@@ -20,4 +22,10 @@ RSpec.configure do |config|
     config.current_driver = :selenium
     config.app_host = 'http://0.0.0.0:3000/'
   end
+
+  # generate routing
+  # SEE ALSO:
+  # http://qiita.com/ori_ika/items/c21a2c4ccae7942625be
+  require 'rspec/rails'
+  config.include Rails.application.routes.url_helpers
 end
