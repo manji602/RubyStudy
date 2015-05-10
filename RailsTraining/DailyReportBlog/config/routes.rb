@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   match 'about', to: 'static_pages#about', via: 'get'
   match 'signup', to: 'users#new', via: 'get'
 
+  resources :users
   resources :comments
   resources :entries
   resources :blogs

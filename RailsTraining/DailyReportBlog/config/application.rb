@@ -25,5 +25,10 @@ module DailyReportBlog
 
     # bootstrap-sass settings
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+    # factory_girl_rails settings
+    config.generators do |g|
+      g.factory_girl false
+    end
   end
 end
