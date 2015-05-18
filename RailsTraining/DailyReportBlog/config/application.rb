@@ -25,6 +25,8 @@ module DailyReportBlog
 
     # bootstrap-sass settings
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    ## disable field-with-errors
+    config.action_view.field_error_proc = proc { |html_tag, instance| "<div class='has-error'>#{html_tag}</div>".html_safe }
 
     # factory_girl_rails settings
     config.generators do |g|
