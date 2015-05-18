@@ -7,7 +7,7 @@ describe "Static pages" do
   describe "Home page" do
     before { visit home_path }
 
-    it { should have_content('Sample App') }
+    it { should have_content('Home') }
     it { should have_title('DailyReportBlog | Home') }
   end
 
