@@ -1,3 +1,6 @@
+require 'factory_girl_rails'
+require 'capybara/rspec'
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -7,25 +10,23 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.before(:suite) do
+    DatabaseCleaner[:active_record].strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
 
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 
   # require capybara
   # SEE ALSO:
   # http://app2641.hatenablog.com/entry/2014/12/15/172954
   # http://qiita.com/ori_ika/items/ded35722b9f22d02d988
-  ENV['RAILS_ENV'] = 'test'
-  require File.expand_path('../../config/environment', __FILE__)
   config.include Capybara::DSL
 
-  Capybara.configure do |config|
-    config.run_server = false
-    config.current_driver = :selenium
-    config.app_host = 'http://0.0.0.0:3000/'
-  end
-
-  # generate routing
-  # SEE ALSO:
-  # http://qiita.com/ori_ika/items/c21a2c4ccae7942625be
-  require 'rspec/rails'
-  config.include Rails.application.routes.url_helpers
 end
