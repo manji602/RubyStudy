@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'rails_helper'
 
 RSpec.describe "AuthenticationPages", type: :request do
@@ -35,6 +36,7 @@ RSpec.describe "AuthenticationPages", type: :request do
       it "should have valid contents" do
         expect(page).to have_title(user.name)
         expect(page).to have_link('Profile', href: user_path(user))
+        expect(page).to have_link('Settings', href: edit_user_path(user))
         expect(page).to have_link('Sign out', href: signout_path)
         expect(page).not_to have_link('Sign in', href: signin_path)
       end

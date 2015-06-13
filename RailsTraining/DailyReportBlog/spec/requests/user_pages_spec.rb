@@ -59,5 +59,46 @@ RSpec.describe "UserPages", type: :request do
         end
       end
     end
+
+    describe "edit" do
+      let(:user) { FactoryGirl.create(:user) }
+      before { visit edit_user_path(user) }
+
+      it "should be valid contents" do
+          expect(page).to have_content("Update your profile")
+          expect(page).to have_title("Edit user")
+          expect(page).to have_link('change', href: 'http://gravatar.com/emails')
+      end
+
+      context "with valid information" do
+        let(:new_name)  { "New Name" }
+        let(:new_email) { "new@example.com" }
+        before do
+          fill_in "Name",             with: new_name
+          fill_in "Email",            with: new_email
+          fill_in "Password",         with: user.password
+          fill_in "Confirm Password", with: user.password
+          click_button "Save changes"
+        end
+
+        it "should be valid success response" do
+          expect(page).to have_title(new_name)
+          expect(page).to have_selector('div.alert.alert-success')
+
+          expect(user.reload.name).to eq new_name
+          expect(user.reload.email).to eq new_email
+        end
+      end
+
+      context "with invalid information" do
+        before { click_button "Save changes" }
+
+        it "should be valid error response" do
+          expect(page).to have_content('error')
+        end
+      end
+
+    end
+
   end
 end
