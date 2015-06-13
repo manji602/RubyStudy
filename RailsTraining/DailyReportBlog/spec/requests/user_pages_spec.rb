@@ -1,29 +1,32 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe "UserPages", type: :request do
   describe "User pages" do
-    
-    subject { page }
 
-#    describe "profile page" do
-#      let(:user) { FactoryGirl.build(:user) }
-#      before { visit user_path(user) }
+    subject{ page }
 
-#      it { should have_content(user.name) }
-#      it { should have_title("DailyReportBlog | #{user.name}") }
-#    end
+    describe "create account" do
+      let(:user) { FactoryGirl.create(:user) }
+      before { visit user_path(user) }
+
+      it "should display user page" do
+        expect(page).to have_content(user.name)
+        expect(page).to have_title("DailyReportBlog | #{user.name}")
+      end
+    end
 
     describe "signup page" do
       before { visit signup_path }
 
-      it { should have_content('Sign up') }
-      it { should have_title('DailyReportBlog | Sign up') }
+      it "should display sign up page" do
+        expect(page).to have_content('Sign up')
+        expect(page).to have_title('DailyReportBlog | Sign up')
+      end
     end
 
     describe "signup" do
 
       before { visit signup_path }
-
       let(:submit) { "Create my account" }
 
       describe "with invalid information" do
@@ -31,7 +34,7 @@ RSpec.describe "UserPages", type: :request do
           expect { click_button submit }.not_to change(User, :count)
         end
       end
-      
+
       describe "with valid information" do
         before do
           fill_in "Name",         with: "Example User"
@@ -39,21 +42,22 @@ RSpec.describe "UserPages", type: :request do
           fill_in "Password",     with: "foobar"
           fill_in "Confirmation", with: "foobar"
         end
-        
+
         it "should create a user" do
           expect { click_button submit }.to change(User, :count).by(1)
         end
 
-        describe "after saving the user" do
+        context "after saving the user" do
           before { click_button submit }
           let(:user) { User.find_by(email: 'user@example.com') }
 
-          it { should have_link('Sign out') }
-          it { should have_title(user.name) }
-          it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+          it "should be logined status" do
+            expect(page).to have_link('Sign out')
+            expect(page).to have_title(user.name)
+            expect(page).to have_selector('div.alert.alert-success', text: 'Welcome')
+          end
         end
       end
     end
-
   end
 end

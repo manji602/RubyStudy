@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Static pages" do
 
@@ -7,15 +7,18 @@ describe "Static pages" do
   describe "Home page" do
     before { visit home_path }
 
-    it { should have_content('Home') }
-    it { should have_title('DailyReportBlog | Home') }
+    it "should have valid contents" do
+      expect(page).to have_content('Home')
+      expect(page).to have_title('DailyReportBlog | Home')
+    end
   end
 
   describe "About page" do
     before { visit about_path }
 
-    it { should have_content('About Us') }
-    it { should have_title('DailyReportBlog | About Us') }
+    it "should have valid contents" do
+      expect(page).to have_content('Abount Us')
+      expect(page).to have_title('DailyReportBlog | Abount Us')
+    end
   end
-
 end
