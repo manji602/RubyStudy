@@ -17,7 +17,18 @@ RSpec.describe User, type: :model do
     expect(@user).to respond_to(:password_confirmation)
     expect(@user).to respond_to(:remember_token)
     expect(@user).to respond_to(:authenticate)
+    expect(@user).to respond_to(:admin)
     expect(@user).to be_valid
+    expect(@user).not_to be_admin
+  end
+
+ describe "with admin attribute set to 'true'" do
+    before do
+      @user.save!
+      @user.toggle!(:admin)
+    end
+
+    it { expect(@user).to be_admin }
   end
 
   shared_examples_for "invalid arguments" do

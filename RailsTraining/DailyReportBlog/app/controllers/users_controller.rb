@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   def show
@@ -35,6 +35,18 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'edit'
+    end
+  end
+
+  def destroy
+    target_user = User.find(params[:id])
+    if current_user.admin? && target_user.id != current_user.id
+      target_user.destroy
+      flash[:success] = "User deleted."
+      redirect_to(users_url)
+    else
+      flash[:warning] = "Can not delete user."
+      redirect_to(root_path)
     end
   end
 
