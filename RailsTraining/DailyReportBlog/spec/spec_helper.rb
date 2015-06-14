@@ -28,5 +28,4 @@ RSpec.configure do |config|
   # http://app2641.hatenablog.com/entry/2014/12/15/172954
   # http://qiita.com/ori_ika/items/ded35722b9f22d02d988
   config.include Capybara::DSL
-
 end

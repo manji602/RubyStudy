@@ -1,24 +1,19 @@
 require 'rails_helper'
 
 describe "Static pages" do
-
-  subject { page }
-
-  describe "Home page" do
+  context "Home page" do
     before { visit home_path }
 
     it "should have valid contents" do
-      expect(page).to have_content('Home')
-      expect(page).to have_title('DailyReportBlog | Home')
+      expect(page.title).to eq 'DailyReportBlog | Home'
     end
   end
 
-  describe "About page" do
+  context "About page" do
     before { visit about_path }
 
     it "should have valid contents" do
-      expect(page).to have_content('Abount Us')
-      expect(page).to have_title('DailyReportBlog | Abount Us')
+      expect(page.title).to eq 'DailyReportBlog | About Us'
     end
   end
 end
