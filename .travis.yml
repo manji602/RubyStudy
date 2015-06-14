@@ -1,11 +1,15 @@
 language: ruby
 rvm:
 - 2.0.0
-env:
-  global:
-before_install: cd RailsTraining/DeilyReportBlog
-install: bundle install --without production --deployment
-script: RAILS_ENV=test bundle exec rspec
+before_install:
+  - cd RailsTraining/DeilyReportBlog
+install:
+  - bundle install --without production
+script:
+  - bundle exec rake db:reset
+  - bundle exec rake db:migrate
+  - bundle exec rake db:test:prepare
+  - RAILS_ENV=test bundle exec rspec spec/
 branches:
   only:
     -master
