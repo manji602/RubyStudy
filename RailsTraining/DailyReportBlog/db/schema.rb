@@ -11,31 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150614052302) do
+ActiveRecord::Schema.define(version: 20150617141432) do
 
   create_table "blogs", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.integer  "owner_id"
-    t.integer  "entry_id"
-    t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "entries", force: :cascade do |t|
-    t.integer  "owner_id"
-    t.integer  "blog_id"
-    t.string   "title"
-    t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "blogs", ["user_id", "created_at"], name: "index_blogs_on_user_id_and_created_at"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
