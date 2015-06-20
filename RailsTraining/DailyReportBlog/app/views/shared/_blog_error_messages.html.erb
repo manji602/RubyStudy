@@ -1,7 +1,7 @@
 <% if @blog.errors.any? %>
 <div class="alert alert-danger" role="alert">
   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Error:</span>The form contains <%= pluralize(@blog.errors.count, "error") %>. <br>
+  <span class="sr-only"><%= t('error_prefix') %></span><%= t('form_contains')%><%= pluralize(@blog.errors.count, "error") %>. <br>
   <% @blog.errors.full_messages.each do |msg| %>
   <li><%= msg %></li>
   <% end %>

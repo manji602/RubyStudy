@@ -5,7 +5,7 @@ describe "Static pages" do
     before { visit home_path }
 
     it "should have valid contents" do
-      expect(page.title).to eq 'DailyReportBlog | Home'
+      expect(page.title).to eq "DailyReportBlog | #{I18n.t('home')}"
     end
   end
 
@@ -13,7 +13,7 @@ describe "Static pages" do
     before { visit about_path }
 
     it "should have valid contents" do
-      expect(page.title).to eq 'DailyReportBlog | About Us'
+      expect(page.title).to eq "DailyReportBlog | #{I18n.t('about')}"
     end
   end
 end

@@ -1,5 +1,5 @@
-<% provide(:title, 'Create blog') %>
-<h1>Create blog</h1>
+<% provide(:title, t('create_blog')) %>
+<h1><%= t('create_blog')%></h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -16,7 +16,7 @@
         <%= f.text_area :description, class: "form-control", rows: 10 %>
       </div>
 
-      <%= f.submit "Create my blog", class: "btn btn-large btn-primary" %>
+      <%= f.submit t('create_blog'), class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>

@@ -9,17 +9,16 @@
   </div>
 
   <div class="col-md-9">
-    <h3 class="page-header">設定</h3>
-    <h4>アカウントの設定</h4>
+    <h3 class="page-header"><%= t('settings') %></h3>
+    <h4><%= t('account_settings') %></h4>
     <div class="btn-group">
-      <%= link_to "アカウントの編集", edit_user_path(current_user), class: "btn btn-primary", role: "button" %>
-      <%= link_to "アカウントの削除", home_path, class: "btn btn-danger", role: "button" %>
+      <%= link_to t('edit_account'), edit_user_path(current_user), class: "btn btn-primary", role: "button" %>
+      <%= link_to t('delete_account'), home_path, class: "btn btn-danger", role: "button" %>
     </div>
-    <h4>ブログの設定</h4>
-
+    <h4><%= t('blog_settings') %></h4>
     <div class="btn-group">
-      <%= link_to "ブログの編集", edit_blog_path(current_blog), class: "btn btn-primary", role: "button" %>
-      <%= link_to "ブログの削除", blog_path(current_blog), class: "btn btn-danger", role: "button", method: "delete" %>
+      <%= link_to t('edit_blog'), edit_blog_path(current_blog), class: "btn btn-primary", role: "button" %>
+      <%= link_to t('delete_blog'), blog_path(current_blog), class: "btn btn-danger", role: "button", method: "delete" %>
     </div>
 
   </div>

@@ -1,5 +1,5 @@
-<% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+<% provide(:title, t('edit_account')) %>
+<h1><%= t('edit_account') %></h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -19,15 +19,15 @@
         <%= f.password_field :password, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= f.label :password_confirmation, "Confirm Password", class: "control-label" %>
+        <%= f.label :password_confirmation, t('confirm_password'), class: "control-label" %>
         <%= f.password_field :password_confirmation, class: "form-control" %>
 
       </div>
 
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+      <%= f.submit t('save_changes'), class: "btn btn-large btn-primary" %>
     <% end %>
 
     <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails">change</a>
+    <a href="http://gravatar.com/emails"><%= t('edit_gravatar') %></a>
   </div>
 </div>

@@ -20,8 +20,8 @@ RSpec.describe "UserPages", type: :request do
       visit users_path
     end
 
-    it { should have_title('All users') }
-    it { should have_content('All users') }
+    it { should have_title("DailyReportBlog | #{I18n.t('users')}") }
+    it { should have_content(I18n.t('users')) }
 
     describe "pagination" do
       before(:all) { 30.times { FactoryGirl.create(:user) } }
@@ -46,11 +46,11 @@ RSpec.describe "UserPages", type: :request do
           visit users_path
         end
 
-        it { expect(page).to have_link('delete', href: user_path(User.first)) }
+        it { expect(page).to have_link(I18n.t('delete'), href: user_path(User.first)) }
         it "should be able to delete another user" do
-          expect { click_link('delete', match: :first) }.to change(User, :count).by(-1)
+          expect { click_link(I18n.t('delete'), match: :first) }.to change(User, :count).by(-1)
         end
-        it { expect(page).not_to have_link('delete', href: user_path(admin)) }
+        it { expect(page).not_to have_link(I18n.t('delete'), href: user_path(admin)) }
       end
     end
   end
@@ -60,14 +60,14 @@ RSpec.describe "UserPages", type: :request do
     before { visit signup_path }
 
     it "should display sign up page" do
-      expect(page).to have_content('Sign up')
-      expect(page).to have_title('DailyReportBlog | Sign up')
+      expect(page).to have_content(I18n.t('sign_up'))
+      expect(page).to have_title("DailyReportBlog | #{I18n.t('sign_up')}")
     end
   end
 
   describe "signup" do
     before { visit signup_path }
-    let(:submit) { "Create my account" }
+    let(:submit) { I18n.t('sign_up_now') }
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -77,10 +77,10 @@ RSpec.describe "UserPages", type: :request do
 
     describe "with valid information" do
       before do
-        fill_in "Name",         with: "Example User"
-        fill_in "Email",        with: "user@example.com"
-        fill_in "Password",     with: "foobar"
-        fill_in "Confirmation", with: "foobar"
+        fill_in "Name", with: "Example User"
+        fill_in "Email", with: "user@example.com"
+        fill_in "Password", with: "foobar"
+        fill_in I18n.t('confirm_password'), with: "foobar"
       end
 
       it "should create a user" do
@@ -92,7 +92,7 @@ RSpec.describe "UserPages", type: :request do
         let(:user) { User.find_by(email: 'user@example.com') }
 
         it "should be logined status" do
-          expect(page).to have_link('Sign out')
+          expect(page).to have_link(I18n.t('sign_out'))
           expect(page).to have_title(user.name)
           expect(page).to have_selector('div.alert.alert-success', text: 'Welcome')
         end
@@ -108,20 +108,20 @@ RSpec.describe "UserPages", type: :request do
     end
 
     it "should be valid contents" do
-      expect(page).to have_content("Update your profile")
-      expect(page).to have_title("Edit user")
-      expect(page).to have_link('change', href: 'http://gravatar.com/emails')
+      expect(page).to have_content(I18n.t('edit_account'))
+      expect(page).to have_title("DailyReportBlog | #{I18n.t('edit_account')}")
+      expect(page).to have_link(I18n.t('edit_gravatar'), href: 'http://gravatar.com/emails')
     end
 
     context "with valid information" do
       let(:new_name)  { "New Name" }
       let(:new_email) { "new@example.com" }
       before do
-        fill_in "Name",             with: new_name
-        fill_in "Email",            with: new_email
-        fill_in "Password",         with: user.password
-        fill_in "Confirm Password", with: user.password
-        click_button "Save changes"
+        fill_in "Name", with: new_name
+        fill_in "Email", with: new_email
+        fill_in "Password", with: user.password
+        fill_in I18n.t('confirm_password'), with: user.password
+        click_button I18n.t('save_changes')
       end
 
       it "should be valid success response" do
@@ -133,7 +133,7 @@ RSpec.describe "UserPages", type: :request do
     end
 
     context "with invalid information" do
-      before { click_button "Save changes" }
+      before { click_button I18n.t('save_changes') }
 
       it "should be valid error response" do
         expect(page).to have_content('error')

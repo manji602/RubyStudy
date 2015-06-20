@@ -15,7 +15,7 @@ RSpec.describe "BlogPages", type: :request do
     end
 
     context "with invalid information" do
-      before { click_button 'Create my blog' }
+      before { click_button I18n.t('create_blog') }
       it { expect(page).to have_content('error') }
     end
 
@@ -28,12 +28,12 @@ RSpec.describe "BlogPages", type: :request do
       end
 
       context "should create blog" do
-        it { expect { click_button 'Create my blog' }.to change(Blog, :count).by(1) }
+        it { expect { click_button I18n.t('create_blog') }.to change(Blog, :count).by(1) }
       end
 
       context "should be valid success response" do
         before do
-          click_button 'Create my blog'
+          click_button I18n.t('create_blog')
         end
         it { expect(page).to have_selector('div.alert.alert-success') }
         it { expect(current_path).to eq(home_path) }

@@ -8,20 +8,20 @@ RSpec.describe "AuthenticationPages", type: :request do
     before { visit signin_path }
 
     it "should have valid contents" do
-      expect(page).to have_content('Sign in')
-      expect(page).to have_title('Sign in')
+      expect(page).to have_content(I18n.t('sign_in'))
+      expect(page).to have_title(I18n.t('sign_in'))
     end
 
     describe "with invalid information" do
-      before { click_button "Sign in" }
+      before { click_button I18n.t('sign_in') }
 
       it "should have valid contents" do
-        expect(page).to have_title('Sign in')
+        expect(page).to have_title(I18n.t('sign_in'))
         expect(page).to have_selector('div.alert.alert-danger', text: 'Invalid')
       end
 
       context "after visiting another page" do
-        before { click_link "Home" }
+        before { click_link I18n.t('home') }
         it { expect(page).not_to have_selector('div.alert.alert-danger') }
       end
     end
@@ -31,21 +31,21 @@ RSpec.describe "AuthenticationPages", type: :request do
       before do
         fill_in "Email",    with: user.email.upcase
         fill_in "Password", with: user.password
-        click_button "Sign in"
+        click_button I18n.t('sign_in')
       end
 
       it "should have valid contents" do
         expect(page).to have_title(user.name)
-        expect(page).to have_link('Users', href: users_path)
-        expect(page).to have_link('Profile', href: user_path(user))
-        expect(page).to have_link('Settings', href: edit_user_path(user))
-        expect(page).to have_link('Sign out', href: signout_path)
-        expect(page).not_to have_link('Sign in', href: signin_path)
+        expect(page).to have_link(I18n.t('users'), href: users_path)
+        expect(page).to have_link(I18n.t('profile'), href: user_path(user))
+        expect(page).to have_link(I18n.t('settings'), href: settings_path)
+        expect(page).to have_link(I18n.t('sign_out'), href: signout_path)
+        expect(page).not_to have_link(I18n.t('sing_up'), href: signin_path)
       end
 
       describe "followed by signout" do
-        before { click_link "Sign out" }
-        it { expect(page).to have_link('Sign in') }
+        before { click_link I18n.t('sign_out') }
+        it { expect(page).to have_link(I18n.t('sign_in')) }
       end
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe "AuthenticationPages", type: :request do
       describe "in the Users controller" do
         context "visiting the edit page" do
           before { visit edit_user_path(user) }
-          it { expect(page).to have_title('Sign in') }
+          it { expect(page).to have_title(I18n.t('sign_in')) }
         end
 
         context "submitting to the update action" do
@@ -70,7 +70,7 @@ RSpec.describe "AuthenticationPages", type: :request do
 
         context "visiting ther user index" do
           before { visit users_path }
-          it { expect(page).to have_title('Sign in') }
+          it { expect(page).to have_title(I18n.t('sign_in')) }
         end
 
         describe "in the Microposts controller" do
@@ -91,12 +91,12 @@ RSpec.describe "AuthenticationPages", type: :request do
           visit edit_user_path(user)
           fill_in "Email",    with: user.email
           fill_in "Password", with: user.password
-          click_button "Sign in"
+          click_button I18n.t('sign_in')
         end
 
         describe "after signing in" do
           it "should render the desired protected page" do
-            expect(page).to have_title('Edit user')
+            expect(page).to have_content(I18n.t('settings'))
           end
         end
       end
@@ -121,7 +121,7 @@ RSpec.describe "AuthenticationPages", type: :request do
 
       describe "submitting a GET request to the Users#edit action" do
         before { get edit_user_path(wrong_user) }
-        specify { expect(response.body).not_to match(full_title('Edit user')) }
+        specify { expect(response.body).not_to match(full_title(I18n.t('edit_user'))) }
         specify { expect(response).to redirect_to(root_url) }
       end
 
