@@ -72,6 +72,18 @@ RSpec.describe "AuthenticationPages", type: :request do
           before { visit users_path }
           it { expect(page).to have_title('Sign in') }
         end
+
+        describe "in the Microposts controller" do
+          context "submitting to the create action" do
+            before { post blogs_path }
+            specify { expect(response).to redirect_to(signin_path) }
+          end
+
+          context "submitting to the destroy action" do
+            before { delete blog_path(FactoryGirl.create(:blog)) }
+            specify { expect(response).to redirect_to(signin_path) }
+          end
+        end
       end
 
       describe "when attempting to visit a protected page" do
