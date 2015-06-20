@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = I18n.t('success_message.create_user')
       redirect_to @user
     else
       render 'new'
@@ -30,8 +30,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+    if @user.update(user_params)
+      flash[:success] = I18n.t('success_message.update_user')
       redirect_to @user
     else
       render 'edit'
@@ -42,10 +42,10 @@ class UsersController < ApplicationController
     target_user = User.find(params[:id])
     if current_user.admin? && target_user.id != current_user.id
       target_user.destroy
-      flash[:success] = "User deleted."
+      flash[:success] = I18n.t('success_message.delete_user')
       redirect_to(users_url)
     else
-      flash[:warning] = "Can not delete user."
+      flash[:warning] = I18n.t('warning_message.delete_user')
       redirect_to(root_path)
     end
   end

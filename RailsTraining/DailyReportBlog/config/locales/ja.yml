@@ -25,8 +25,17 @@ ja:
   sign_up: "アカウント登録"
   sign_up_now: "アカウントを作成する"
   sign_out: "ログアウト"
+  success_message:
+    create_blog: "ブログ作成が完了しました。"
+    create_user: "ユーザ登録が完了しました。"
+    delete_user: "ユーザの削除が完了しました。"
+    update_user: "ユーザ情報の更新が完了しました。"
+    update_blog: "ブログ情報の更新が完了しました。"
   settings: "設定"
   suggest_create_blog: "ブログを作成しましょう。"
   suggest_create_user: "まずはユーザー登録から。"
   users: "ユーザ一覧"
+  warning_message:
+    create_duplicate_blog: "すでにブログを作成しています。"
+    delete_user: "ユーザの削除に失敗しました。"
   welcome_message: "日報ブログへようこそ"
