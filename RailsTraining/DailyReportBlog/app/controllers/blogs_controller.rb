@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   before_action :signed_in_user
-  before_action :correct_blog, only: [:edit, :update]
+  before_action :correct_blog, only: [:edit, :update, :destroy]
 
   def new
     unless current_user.blog.nil?
@@ -35,6 +35,11 @@ class BlogsController < ApplicationController
   end
 
   def destroy
+    if @blog.destroy
+      redirect_to home_path
+    else
+      flash[:warning] = I18n.t('warning_message.delete_blog')
+    end
   end
 
   private

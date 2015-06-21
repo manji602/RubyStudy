@@ -1,6 +1,6 @@
 ja:
   about: "About"
-  about_description: "日報ブログは、日報メールを簡単に送ることのできるサービスです。"
+  about_description: "日報ブログは、日報を簡単に書くことのできるサービスです。"
   account_settings: "アカウントの設定"
   author: "Jun Hashimoto"
   blog_settings: "ブログの設定"
@@ -15,7 +15,7 @@ ja:
   edit_blog: "ブログの編集"
   edit_gravatar: "アイコンの編集"
   error_prefix: "Error:"
-  form_contains: "The form contains "
+  form_contains: "The form contains"
   home: "Home"
   menu: "メニュー "
   new_user: "ユーザ登録がまだの方は、こちらから。"
@@ -37,5 +37,6 @@ ja:
   users: "ユーザ一覧"
   warning_message:
     create_duplicate_blog: "すでにブログを作成しています。"
+    delete_blog: "ブログの削除に失敗しました。"
     delete_user: "ユーザの削除に失敗しました。"
   welcome_message: "日報ブログへようこそ"
