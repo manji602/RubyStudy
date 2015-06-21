@@ -1,0 +1,9 @@
+<div class="col-md-10 col-md-offset-1">
+  <h4><%= entry.title %></h4>
+  <p><%= simple_format(h(entry.body)) %></p>
+  <% if is_entry_owner?(entry) %>
+    <%= link_to t('edit'), '#' %>
+    | <%= link_to t('delete'), '#', method: :delete, data: { confirm: t('confirm_delete') } %>
+  <% end %>
+  <hr>
+</div>

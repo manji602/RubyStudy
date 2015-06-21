@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
   def home
     if has_blog?
       @blog = current_blog
+      @entries = @blog.entries.paginate(page: params[:page], per_page: 5)
     end
   end
 
