@@ -47,7 +47,7 @@ RSpec.describe Blog, type: :model do
     end
 
     context "description is too long" do
-      before { user.blog.description = "a" * 501 }
+      before { user.blog.description = "a" * 201 }
       it_behaves_like "invalid arguments"
     end
   end
