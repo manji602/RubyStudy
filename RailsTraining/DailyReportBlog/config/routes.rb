@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   match 'signout', to: 'sessions#destroy', via: 'delete'
 
   resources :users
-  resources :blogs
-  resources :entries
+  resources :blogs, only: [:new, :create, :edit, :update, :destroy]
+  resources :entries, only: [:new, :create, :edit, :update, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
