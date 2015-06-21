@@ -1,12 +1,14 @@
 <% provide(:title, t('home')) %>
 <% if signed_in? %>
   <% if has_blog? %>
-    <!-- TODO entryを作成したら修正する -->
     <div class="well"><%= @blog.description %></div>
-    <div class="page-header">
-      <h1><%= t('entries') %></h1>
-    </div>
     <div class="row">
+      <%= render 'shared/user_thumbnail', user: current_user %>
+      <div class="col-md-9">
+        <div class="page-header">
+          <h1><%= t('entries') %></h1>
+        </div>
+      </div>
       <%=render 'static_pages/entry_form' %>
       <% if @blog.entries.any? %>
         <%=render @entries %>

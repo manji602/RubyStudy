@@ -24,6 +24,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    unless @user.blog.nil?
+      @entries = @user.blog.entries.paginate(page: params[:page], per_page: 5)
+    end
   end
 
   def edit

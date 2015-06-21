@@ -1,9 +1,0 @@
-<% if @entry.errors.any? %>
-<div class="alert alert-danger" role="alert">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only"><%= t('error_prefix')%></span><%= t('form_contains')%><%= pluralize(@entry.errors.count, "error") %>. <br>
-  <% @entry.errors.full_messages.each do |msg| %>
-  <li><%= msg %></li>
-  <% end %>
-</div>
-<% end %>

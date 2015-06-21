@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@blog) do |f| %>
-      <%= render 'shared/blog_error_messages' %>
+      <%= render 'shared/error_messages', object: f.object %>
 
       <div class="form-group">
         <%= f.label :title, class: "control-label"  %>
