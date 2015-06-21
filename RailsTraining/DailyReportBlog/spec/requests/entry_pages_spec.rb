@@ -59,7 +59,7 @@ RSpec.describe "EntryPages", type: :request do
 
   describe "edit action" do
     before do
-      FactoryGirl.create(:entry, user: user, blog: blog)
+      entry = FactoryGirl.create(:entry, user: user, blog: user.blog)
       visit edit_entry_path(entry)
     end
 
