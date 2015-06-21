@@ -1,9 +1,35 @@
-<div class="col-md-9 col-md-offset-3">
-  <h4><%= entry.title %></h4>
-  <p><%= simple_format(h(entry.body)) %></p>
-  <% if is_entry_owner?(entry) %>
-    <%= link_to t('edit'), edit_entry_path(entry) %>
+<div class="row">
+  <div class="col-md-12">
+    <h4><%= entry.title %></h4>
+    <p><%= entry.created_at %></p>
+    <p><%= simple_format(h(entry.body)) %></p>
+    <% if is_entry_owner?(entry) %>
+      <%= link_to t('edit'), edit_entry_path(entry) %>
     | <%= link_to t('delete'), entry_path(entry), method: :delete, data: { confirm: t('confirm_delete') } %>
-  <% end %>
-  <hr>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="page-header">
+      <h4><%= t('comments') %></h4>
+    </div>
+    <% unless entry.comments.nil? %>
+      <%=render entry.comments %>
+    <% end %>
+    <%= form_for(build_comment(entry)) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="field">
+        <%= f.text_area :body, placeholder: t('suggest_comment') %>
+        <input type="hidden" name="comment[user_id]" value=<%= current_user.id %>>
+        <input type="hidden" name="comment[entry_id]" value=<%= entry.id %>>
+      </div>
+      <%= f.submit t('submit'), class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <hr>
+  </div>
 </div>

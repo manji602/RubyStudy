@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 module StaticPagesHelper
+  def build_comment(entry)
+    return entry.comments.build
+  end
+
   def current_blog_title
     return has_blog? ? current_user.blog.title : '日報ブログ'
   end

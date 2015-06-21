@@ -1,0 +1,19 @@
+<div class="well">
+  <div class="row">
+    <div class="col-md-1">
+      <%= gravatar_for comment_user(comment), size: 40 %>
+    </div>
+    <div class="col-md-11">
+      <p><%= link_to comment_user(comment).name, comment_user(comment) %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p><%= comment.created_at %></p>
+      <p><%= comment.body %></p>
+      <% if comment.user_id == current_user.id %>
+        <%= link_to t('delete'), comment, method: :delete, data: { confirm: t('confirm_delete')} %>
+      <% end %>
+    </div>
+  </div>
+</div>

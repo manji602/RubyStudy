@@ -51,10 +51,10 @@ class EntriesController < ApplicationController
   def destroy
     if @entry.destroy
       flash[:success] = I18n.t('success_message.delete_entry')
-      redirect_to home_path
     else
       flash[:warning] = I18n.t('warning_message.delete_entry')
     end
+    redirect_to :back
   end
 
   private
@@ -64,7 +64,7 @@ class EntriesController < ApplicationController
 
     def correct_entry
       @entry = Entry.find(params[:id])
-      redirect_to(root_path) if @entry.nil?
-      redirect_to(root_path) unless @entry.user_id == current_user.id
+      redirect_to :back if @entry.nil?
+      redirect_to :back unless @entry.user_id == current_user.id
     end
 end
