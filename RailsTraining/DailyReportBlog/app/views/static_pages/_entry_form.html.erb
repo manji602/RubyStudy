@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-2 col-md-offset-10">
+    <button type="button" class="btn btn-primary btn-lg center-block" data-toggle="modal" data-target="#entryForm">
+      <%= t('create_entry') %>
+    </button>
+  </div>
+</div>
+
+<div class="modal fade" id="entryForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= t('create_entry') %></h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('close') %></button>
+        <button type="button" class="btn btn-primary"><%= t('submit') %></button>
+      </div>
+    </div>
+  </div>
+</div>

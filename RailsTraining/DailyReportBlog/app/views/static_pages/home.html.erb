@@ -2,7 +2,12 @@
 <% if signed_in? %>
   <% if has_blog? %>
     <!-- TODO entryを作成したら修正する -->
-    has blog!!!
+    <div class="well"><%= @blog.description %></div>
+    <div class="page-header">
+      <h1><%= t('entries') %></h1>
+    </div>
+    <%=render 'static_pages/entry_form' %>
+    <%=render 'static_pages/entry' %>
   <% else %>
     <div class="center jumbotron">
       <h1><%= t('welcome_message') %></h1>
