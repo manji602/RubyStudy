@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Entry, type: :model do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user, id: 1) }
+  let(:blog) { FactoryGirl.create(:blog, user: user) }
 
   before(:each) do
-    user.blog = Blog.create(title: "sample blog", description: "sample description")
-    @entry = user.blog.entries.build(title: "sample title", body: "sample body")
+    @entry = blog.entries.build(title: "sample title", body: "sample body", user_id: user.id)
   end
 
   it "should respond" do
@@ -13,7 +13,7 @@ RSpec.describe Entry, type: :model do
     expect(@entry).to respond_to(:body)
     expect(@entry).to respond_to(:blog_id)
     expect(@entry).to respond_to(:user_id)
-    expect(1).to eq(1)
+    expect(@entry).to be_valid
   end
 
   describe "belong object is null" do
