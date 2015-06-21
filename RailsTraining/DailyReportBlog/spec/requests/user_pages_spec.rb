@@ -94,7 +94,7 @@ RSpec.describe "UserPages", type: :request do
         it "should be logined status" do
           expect(page).to have_link(I18n.t('sign_out'))
           expect(page).to have_title(user.name)
-          expect(page).to have_selector('div.alert.alert-success', text: 'Welcome')
+          expect(page).to have_selector('div.alert.alert-success', text: I18n.t('success_message.create_user'))
         end
       end
     end
