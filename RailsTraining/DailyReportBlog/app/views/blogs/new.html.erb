@@ -8,12 +8,12 @@
 
       <div class="form-group">
         <%= f.label :title, class: "control-label"  %>
-        <%= f.text_field :title, class: "form-control"  %>
+        <%= f.text_field :title, class: "form-control", placeholder: t('placeholder.blog_title')  %>
       </div>
 
       <div class="form-group">
         <%= f.label :description, class: "control-label" %>
-        <%= f.text_area :description, class: "form-control", rows: 10 %>
+        <%= f.text_area :description, class: "form-control", rows: 10, placeholder: t('placeholder.blog_description') %>
       </div>
 
       <%= f.submit t('create_blog'), class: "btn btn-large btn-primary" %>

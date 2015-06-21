@@ -4,6 +4,10 @@ module StaticPagesHelper
     return entry.comments.build
   end
 
+  def build_entry
+    return Entry.new
+  end
+
   def current_blog_title
     return has_blog? ? current_user.blog.title : '日報ブログ'
   end

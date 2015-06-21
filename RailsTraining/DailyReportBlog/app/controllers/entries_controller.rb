@@ -59,7 +59,7 @@ class EntriesController < ApplicationController
 
   private
     def entry_params
-      params.require(:entry).permit(:title, :body, :user_id)
+      params.require(:entry).permit(:title, :body, :user_id, :blog_id)
     end
 
     def correct_entry
