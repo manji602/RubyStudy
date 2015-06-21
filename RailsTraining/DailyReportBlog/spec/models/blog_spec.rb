@@ -51,5 +51,4 @@ RSpec.describe Blog, type: :model do
       it_behaves_like "invalid arguments"
     end
   end
-
 end
